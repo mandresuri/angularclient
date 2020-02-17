@@ -1,0 +1,368 @@
+
+
+	<div class="row">
+		<div class="col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Registrar Administrador</h2>
+			<h3 class="section-subheading text-muted">Ingrese sus datos</h3>
+		</div>
+	</div>
+	<br>
+	<form #formRegistro="ngForm">
+		<div class="form-group">
+			<div class="row">
+				<div class="col">
+					<div class="card">
+						<div class="card-body ">
+							<h5 class="card-title text-center">Datos Personales</h5>
+							<div class="row">
+								<div class="form-group col-md-6">
+									<label for="nombres">Nombres</label>
+									<input type="text" class="form-control" id="nombres" name="nombres"
+										placeholder="Nombres" #fieldAdminName="ngModel" [(ngModel)]="formData.nombres"
+										required>
+									<p class="block-tag text-left"
+										*ngIf="fieldAdminName.invalid && (fieldAdminName.dirty || fieldAdminName.touched)">
+										<small class="badge badge-default badge-danger"
+											*ngIf="fieldAdminName.errors.required">
+											Campo Requerido
+										</small>
+										<!--	<small class="badge badge-default badge-danger" *ngIf="fieldUserEmail.errors.pattern">
+								Formato de correo inválido
+							</small>-->
+									</p>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="apellidos">Apellidos</label>
+									<input type="text" class="form-control" id="apellidos" name="apellidos"
+										placeholder="Apellidos" #fieldAdminSurname="ngModel"
+										[(ngModel)]="formData.apellidos" required>
+									<p class="block-tag text-left"
+										*ngIf="fieldAdminSurname.invalid && (fieldAdminSurname.dirty || fieldAdminSurname.touched)">
+										<small class="badge badge-default badge-danger"
+											*ngIf="fieldAdminSurname.errors.required">
+											Campo Requerido
+										</small>
+										<!--	<small class="badge badge-default badge-danger" *ngIf="fieldUserEmail.errors.pattern">
+								Formato de correo inválido
+							</small>-->
+									</p>
+								</div>
+
+							</div>
+							<div class="row">
+								<div class="form-group col-md-4">
+									<label for="generosel">Género</label>
+									<select class="form-control" id="generosel" name="generosel"
+										#fieldAdminGender="ngModel" [(ngModel)]="formData.genero" required>
+										<option value="masculino">Masculino</option>
+										<option value="femenino">Femenino</option>
+									</select>
+									<p class="block-tag text-left"
+										*ngIf="fieldAdminGender.invalid && (fieldAdminGender.dirty || fieldAdminGender.touched)">
+										<small class="badge badge-default badge-danger"
+											*ngIf="fieldAdminGender.errors.required">
+											Campo Requerido
+										</small>
+									</p>
+								</div>
+								<div class="form-group col-md-3">
+									<label for="edad">Edad</label>
+									<input type="number" class="form-control" id="edad" placeholder="Edad" disabled>
+								</div>
+								<div class="form-group col-sm-5">
+									<label for="nacimiento">Fecha Nacimiento</label>
+									<input required type="date" class="form-control" name="nacimiento">
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-6">
+									<label for="tipodocumento">Tipo Documento</label>
+									<select id="tipodocumento" class="form-control" name="tipodocumento"
+										#fieldAdminDocumentType="ngModel" [(ngModel)]="formData.tipodocumento">
+										<option value="CC">Cedula Ciudadanía</option>
+										<option value="CE">Cedula Extranjera</option>
+									</select>
+									<p class="block-tag text-left"
+										*ngIf="fieldAdminDocumentType.invalid && (fieldAdminDocumentType.dirty || fieldAdminDocumentType.touched)">
+										<small class="badge badge-default badge-danger"
+											*ngIf="fieldAdminDocumentType.errors.required">
+											Campo Requerido
+										</small>
+
+								</div>
+								<div class="form-group col-md-6">
+									<label for="documentonum">Número Documento</label>
+									<input type="number" class="form-control" id="documentonum" name="documentonum"
+										placeholder="Documento" value="{{formData.documento}}">
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-4">
+									<label for="pais">Pais</label>
+									<select name="pais" id="pais" class="form-control">
+										<option *ngFor="let pais of paises" [ngValue]="pais.id">{{pais.nombre}}</option>
+									</select>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="dpto">Departamento</label>
+									<select id="dpto" class="form-control">
+										<option selected>Elige...</option>
+										<option>Quindio</option>
+										<option>Risaralda</option>
+										<option>Caldas</option>
+										<option>Antioquia</option>
+									</select>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="ciudad">Ciudad</label>
+									<select id="ciudad" class="form-control">
+										<option selected>Elige...</option>
+										<option>Armenia</option>
+										<option>Calarcá</option>
+										<option>Tebaida</option>
+										<option>Quimbaya</option>
+									</select>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title text-center">Datos Contacto</h5>
+							<div class="row">
+								<div class="form-group col-sm-3 form-inline">
+									<br><br><br>
+									<span class="btn btn-outline-primary btn-file">
+										<i class="fa fa-upload"> </i> Subir Archivo<input type="file"
+											(change)="onfileselected($event)">
+									</span>
+
+								</div>
+								<div class="form-group col-sm-3">
+									<button type="button" class="btn btn-outline-success" id="btnfoto"
+										data-toggle="modal" data-target="#myModal" (click)="activateCam()"><i
+											class="fa fa-camera"></i> Foto
+										Admin</button>
+
+								</div>
+								<div class="form-group col-sm-6">
+									<label for="inputPicture">Foto</label>
+									<input type="text" class="form-group" name="inputPicture">
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-3">
+									<br>
+									<button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal"
+										data-target="#myModal" (click)="activateCam()"><i class="fa fa-camera"></i> Foto
+										Cedula1</button>
+
+								</div>
+								<div class="form-group col-md-3">
+									<label for="cedula1">Foto C1</label>
+									<input type="text" class="form-control" id="cedula1" name="cedula1">
+								</div>
+								<div class="form-group col-md-3">
+									<br>
+									<button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal"
+										data-target="#myModal" (click)="activateCam()"><i class="fa fa-camera"></i> Foto
+										Cedula2</button>
+
+								</div>
+								<div class="form-group col-md-3">
+									<label for="cedula2">Foto C2</label>
+									<input type="text" class="form-control" id="cedula2" name="cedula2">
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label for="direccion">Direccion Domicilio</label>
+									<input type="text" class="form-control" id="direccion"
+										placeholder="Cra.,Cll.,Apto,B/">
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label for="correo">Correo Electrónico</label>
+									<input type="email" class="form-control" id="correo"
+										placeholder="micorreo@proveedor.com">
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-5">
+									<label for="celular">Celular</label>
+									<input type="number" class="form-control" id="celular" placeholder="Celular">
+								</div>
+								<div class="form-group col-md-4">
+									<label for="numerofijo">Teléfono Fijo</label>
+									<input type="number" class="form-control" id="numerofijo" placeholder="Fijo">
+								</div>
+								<div class="form-group col-md-3">
+									<label for="codpostal">Cd Postal</label>
+									<input type="number" class="form-control" id="codpostal" placeholder="Postal">
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label for="nombrejefe">Nombre Completo Jefe Inmediato</label>
+									<input type="text" class="form-control" id="nombrejefe" placeholder="Nombre Jefe">
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="col">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title text-center">Datos Referencia</h5>
+
+							<div class="row">
+								<div class="form-group col-md-6">
+									<label for="nombrefamiliar">Nombre de un Familiar</label>
+									<input type="text" class="form-control" id="nombrefamiliar"
+										placeholder="Nombre completo">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="numerofamiliar">Celular del Familiar</label>
+									<input type="number" class="form-control" id="numerofamiliar" placeholder="Celular">
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label for="parentesco">Parentesco</label>
+									<input type="text" class="form-control" id="parentesco" placeholder="parentesco">
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-12 text-center">
+									<image-upload (uploadFinished)="onUploadFinish($event)">
+									</image-upload>
+									<img src="assets/img/upload.svg" alt="">
+
+								</div>
+							</div>
+							<div class="row">
+								<button class="btn btn-outline-success" (click)="sendImage()"> Guardar </button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row justify-content-center align-items-center minh-100">
+				<div class="form-group">
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="gridCheck">
+						<label class="form-check-label" for="gridCheck">
+							Acepto términos y condiciones
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-center align-items-center minh-100">
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary" (click)="save()">Registrar</button>
+				</div>
+			</div>
+		</div>
+</form>
+<div class="col-md-4 text-center"> 
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" (click)="activateCam()">
+		Foto CLiente
+	  </button>
+</div>
+		
+		<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel"> Foto Cliente</h4>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<div style="text-align:center">
+							<div>
+								<webcam [height]="500" [width]="500" [trigger]="triggerObservable"
+									(imageCapture)="handleImage($event)" *ngIf="showWebcam"
+									[allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+									[videoOptions]="videoOptions" [imageQuality]="1"
+									(cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)">
+								</webcam>
+								<form action="">
+									<div class="row form-group align-items-center">
+										<br />
+										<button class="actionBtn form-control col-md-4" (click)="triggerSnapshot();"
+											data-toggle="modal" data-target="#myModal2" (click)="deactivateCam()">Tomar
+											Foto</button>
+										<button class="actionBtn form-control col-md-3"
+											(click)="toggleWebcam();">Cambiar</button>
+										<br />
+										<button class="actionBtn form-control col-md-3" (click)="showNextWebcam(true);"
+											[disabled]="!multipleWebcamsAvailable">Siguiente Cam</button>
+
+										<br />
+									</div>
+								</form>
+								<div class="row form-group align-items-center"><input id="cameraSwitchCheckbox"
+										class="form-control col-md-4" type="checkbox"
+										[(ngModel)]="allowCameraSwitch"><label for="cameraSwitchCheckbox">Allow Camera
+										Switch</label></div>
+								DeviceId: <input id="deviceId" type="text" [(ngModel)]="deviceId" style="width: 500px">
+								<button (click)="showNextWebcam(deviceId);">Activate</button>
+							</div>
+
+						</div>
+					</div>
+					<div class="snapshot" *ngIf="webcamImage">
+						<h2>Nice one!</h2>
+						<img [src]="webcamImage.imageAsDataUrl" />
+					</div>
+
+					<h4 *ngIf="errors.length > 0">Messages:</h4>
+					<ul *ngFor="let error of errors">
+						<li>{{error | json}}</li>
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal"
+						(click)="deactivateCam()">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel2"> Foto Cliente</h4>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<div class="snapshot" *ngIf="webcamImage">
+							<h2>Perfecto!</h2>
+							<img [src]="webcamImage.imageAsDataUrl" />
+						</div>
+
+						<h4 *ngIf="errors.length > 0">Messages:</h4>
+						<ul *ngFor="let error of errors">
+							<li>{{error | json}}</li>
+						</ul>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Guardar Foto</button>
+						<button type="button" class="btn btn-warning" data-dismiss="modal" (click)="activateCam()">De
+							nuevo</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	
+

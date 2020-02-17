@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Login Page</title>
+	<!--Made with love by Mutiullah Samim -->
+
+	<!--Bootsrap 4 CDN-->
+
+
+	<!--Fontawesome CDN-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+		integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+	<!--Custom styles-->
+
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row justify-content-center align-items-center minh-100">
+			<div class="card">
+				<div class="card-header">
+					<h3>Registro</h3>
+					<div class="block">Digite sus datos de registro</div>
+				</div>
+				<div class="card-body">
+					<form (ngSubmit)="register()" #FormInicioSesion="ngForm">
+                        <div class="input-group form-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fas fa-number"></i></span>
+							</div>
+							<input type="text" class="form-control"  id="cedula" name="cedula" placeholder="cedula"
+								#fieldUserID="ngModel" [(ngModel)]="cedula" required>
+						</div>
+						<p class="block-tag text-left"
+							*ngIf="fieldUserID.invalid && (fieldUserID.dirty || fieldUserID.touched)">
+							<small class="badge badge-default badge-danger" *ngIf="fieldUserID.errors.required">
+								Campo Requerido
+							</small>
+						</p>
+						<div class="input-group form-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+							<input type="text" class="form-control"  id="nombre" name="nombre" placeholder="Nombre"
+								#fieldUserName="ngModel" [(ngModel)]="nombre" required>
+						</div>
+						<p class="block-tag text-left"
+							*ngIf="fieldUserName.invalid && (fieldUserName.dirty || fieldUserName.touched)">
+							<small class="badge badge-default badge-danger" *ngIf="fieldUserName.errors.required">
+								Campo Requerido
+							</small>
+						</p>
+						<div class="input-group form-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fas fa-phone"></i></span>
+							</div>
+							<input type="text" class="form-control"  id="telefono" name="telefono" placeholder="telefono"
+								#fieldUserTel="ngModel" [(ngModel)]="telefono" required>
+						</div>
+						<p class="block-tag text-left"
+							*ngIf="fieldUserTel.invalid && (fieldUserTel.dirty || fieldUserTel.touched)">
+							<small class="badge badge-default badge-danger" *ngIf="fieldUserTel.errors.required">
+								Campo Requerido
+							</small>
+						</p>
+						<div class="input-group form-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fas fa-at"></i></span>
+							</div>
+							<input type="text" class="form-control"  id="correo" name="correo" placeholder="correo"
+								pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@+[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$"
+								#fieldUserEmail="ngModel" [(ngModel)]="correo" required>
+						</div>
+						<p class="block-tag text-left"
+							*ngIf="fieldUserEmail.invalid && (fieldUserEmail.dirty || fieldUserEmail.touched)">
+							<small class="badge badge-default badge-danger" *ngIf="fieldUserEmail.errors.required">
+								Campo Requerido
+							</small>
+							<small class="badge badge-default badge-danger" *ngIf="fieldUserEmail.errors.pattern">
+								Formato de correo inválido
+							</small>
+						</p>
+						<div class="input-group form-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<input type="password" class="form-control" id="password" name="password"
+								placeholder="contraseña" #fieldUserPassword="ngModel" [(ngModel)]="password" required>
+						</div>
+						<p class="block-tag text-left"
+							*ngIf="fieldUserPassword.invalid && (fieldUserPassword.dirty || fieldUserPassword.touched)">
+							<small class="badge badge-default badge-danger" *ngIf="fieldUserPassword.errors.required">
+								Campo Requerido
+							</small>
+						</p>
+						<div class="form-group">
+							<label for="pais" >Pais</label>
+							<select name="pais" id="pais" class="form-control" >
+							<option *ngFor="let pais of paises" [ngValue]="pais.id" >{{pais.nombre}}</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<input type="submit" value="Guardar" class="btn float-right login_btn"
+								[disabled]="!FormInicioSesion.valid">
+						</div>
+						
+					</form>
+				</div>
+				<div class="card-footer">
+					<div class="d-flex justify-content-center links">
+						¿Ya tienes una cuenta?<a href="#">Iniciar Sesión</a>
+					</div>
+					<div class="d-flex justify-content-center">
+						<a routerLink="/navegacion">¿Olvidaste tu contraseña?</a>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+		
+			
+	</div>
+</body>
+
+</html>

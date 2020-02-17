@@ -1,0 +1,90 @@
+<br>
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-sm-8">
+          <h4>Clientes</h4>
+        </div>
+        
+      </div>
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="row">
+
+          <div class="col-sm-10 form-group form-inline">
+            Buscar: <input class="form-control ml-2" type="text" name="searchTerm"
+               />
+          <!--  <span class="ml-3" *ngIf="clienteService.loading$ | async"> Cargando...</span>-->
+
+          </div>
+          <div class="col-sm-2 col-lg-2">
+            <select class="custom-select" style="width: auto" name="pageSize">
+              <option >2 items per page</option>
+              <option >4 items per page</option>
+              <option >6 items per page</option>
+            </select>
+          </div>
+        </div>
+
+        <table class="table table-striped" style="text-align: center;" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th scope="col" sortable="id" >ID</th>
+              <th scope="col" sortable="cliente" >Documento</th>
+              <th scope="col" sortable="cedula" >Nombres</th>
+              <th scope="col" sortable="cupo" >Apellidos</th>
+              <th scope="col" sortable="celular" >Telefono FIjo</th>
+              <th scope="col" sortable="estado">Edad</th>
+              <th scope="col" sortable="acciones" >Correo</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <tr *ngFor="let cliente of clientes ; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <th>
+                {{cliente.id}}
+              </th>
+              <th>
+                {{cliente.documento}}
+              </th>
+              <th>
+                {{cliente.nombres}}
+              </th>
+              <th>
+                {{cliente.apellidos}}
+              </th>
+              <th>
+                {{cliente.telefonofijo}}
+              </th>
+              <th>
+                {{cliente.edad}}
+              </th>
+              <th>
+                {{cliente.correo}}
+              </th>
+              <th>
+                <a href="" title="Detalles">
+                  <svg id="i-search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32"
+                    fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                    <circle cx="14" cy="14" r="12" />
+                    <path d="M23 23 L30 30" />
+                  </svg>
+                </a>
+              </th>
+            </tr>
+
+          </tbody>
+        </table>
+       <div class="d-flex justify-content-between p-2">
+         
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+</div>

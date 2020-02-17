@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+$rojo:red;
+$blanco: white;
+body{
+    .container{
+        background-color: steelblue;
+    }
+    ul li a{
+        font-family: 'Comic Sans';
+        font-size: 20px;
+        color: $rojo !important;
+    }
+}
